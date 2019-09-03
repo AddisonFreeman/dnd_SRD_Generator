@@ -66,7 +66,7 @@ beyond() {
 equipment() {
   ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/04_equipment/* | while read -r file; 
   do 
-    if [[ $file == *"0_Equipment.html"* ]]; then
+    if [[ $file == *"3_Weapons.html"* ]]; then
       value=$(<"$file")
       file="$(echo $file | sed 's/^.\{89\}//')"
       file=${file::${#file}-5}
