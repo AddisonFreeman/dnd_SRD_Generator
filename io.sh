@@ -118,18 +118,18 @@ combat() {
 spellcasting() {
   ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/08_spellcasting/* | while read -r file; 
   do 
-    if [[ $file == *"4_Spell Descriptions.html"* ]]; then
+    # if [[ $file == *"4_Spell Descriptions.html"* ]]; then
       value=$(<"$file")
       file="$(echo $file | sed 's/^.\{92\}//')"
       file=${file::${#file}-5}
       echo $file
       convert_skullsplitter_md_to_html "$file" "$value"; 
-    fi
+    # fi
   done
 }
 
-running() {
-  ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/09_running/* | while read -r file; 
+hazards() {
+  ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/09_hazards/* | while read -r file; 
   do 
     # if [[ $file == *"0_Spellcasting.html"* ]]; then
       value=$(<"$file")
@@ -246,8 +246,8 @@ npcs() {
 # feats
 # mechanics
 # combat
-spellcasting
-# running
+# spellcasting
+hazards
 # magic_items
 # monsters
 # conditions
