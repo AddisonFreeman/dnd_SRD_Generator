@@ -53,13 +53,13 @@ classes() {
 beyond() {
   ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/03_beyond1st/* | while read -r file; 
   do 
-    if [[ $file == *"1_Multiclassing.html"* ]]; then
+    # if [[ $file == *"1_Multiclassing.html"* ]]; then
       value=$(<"$file")
       file="$(echo $file | sed 's/^.\{89\}//')"
       file=${file::${#file}-5}
       echo $file
       convert_skullsplitter_md_to_html "$file" "$value"; 
-    fi
+    # fi
   done
 }
 
@@ -241,9 +241,9 @@ npcs() {
 # legal 
 # races
 # classes
-beyond
+# beyond
 # equipment
-# feats
+feats
 # mechanics
 # combat
 # spellcasting
