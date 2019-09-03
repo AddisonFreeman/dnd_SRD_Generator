@@ -118,7 +118,7 @@ combat() {
 spellcasting() {
   ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/08_spellcasting/* | while read -r file; 
   do 
-    # if [[ $file == *"0_Spellcasting.html"* ]]; then
+    # if [[ $file == *"5_Spell Descriptions (A-F).html"* ]]; then
       value=$(<"$file")
       file="$(echo $file | sed 's/^.\{92\}//')"
       file=${file::${#file}-5}
@@ -238,15 +238,15 @@ npcs() {
   # echo "$value"
 # done
 
-legal 
-races
-classes
-beyond
-equipment
-feats
-mechanics
-combat
-# spellcasting
+# legal 
+# races
+# classes
+# beyond
+# equipment
+# feats
+# mechanics
+# combat
+spellcasting
 # running
 # magic_items
 # monsters
