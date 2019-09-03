@@ -248,7 +248,7 @@ npcs() {
 # combat
 # spellcasting
 # hazards
-# magic_items
+magic_items
 # monsters
 # conditions
 # gods
