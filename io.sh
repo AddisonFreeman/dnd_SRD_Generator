@@ -233,11 +233,11 @@ npcs() {
 }
 
 main() {
-  ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/00_legal/* | while read -r file; 
+  ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/17_main/* | while read -r file; 
   do 
     if [[ $file == *"00_Master Table Of Contents.html"* ]]; then
       value=$(<"$file")
-      file="$(echo $file | sed 's/^.\{84\}//')"
+      file="$(echo $file | sed 's/^.\{85\}//')"
       file=${file::${#file}-5}
       echo $file
       convert_skullsplitter_md_to_html "$file" "$value"; 
@@ -265,8 +265,8 @@ main() {
 # monsters
 # conditions
 # gods
-# planes
+planes
 # creatures
 # npcs
-main
+# main
 
