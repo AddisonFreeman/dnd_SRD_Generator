@@ -66,13 +66,13 @@ beyond() {
 equipment() {
   ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/04_equipment/* | while read -r file; 
   do 
-    # if [[ $file == *"2_Armor.html"* ]]; then
+    if [[ $file == *"0_Equipment.html"* ]]; then
       value=$(<"$file")
       file="$(echo $file | sed 's/^.\{89\}//')"
       file=${file::${#file}-5}
       echo $file
       convert_skullsplitter_md_to_html "$file" "$value"; 
-    # fi
+    fi
   done
 }
 
@@ -240,9 +240,9 @@ npcs() {
 
 # legal 
 # races
-classes
+# classes
 # beyond
-# equipment
+equipment
 # feats
 # mechanics
 # combat
