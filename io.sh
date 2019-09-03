@@ -6,8 +6,8 @@ convert_skullsplitter_md_to_html() {
     -H 'Content-Type: application/json' \
     -H 'Postman-Token: 99dc91b2-2f89-48be-b4b9-1c2ad5378315' \
     -H 'cache-control: no-cache' \
-    -d "{\"page\": {\"title\": \"$1\",\"body_html\": \"$2\",\"handle\":\"dnd5e\/$1\"}}"
-     # >> curlOutput.txt  
+    -d "{\"page\": {\"title\": \"$1\",\"body_html\": \"$2\",\"handle\":\"dnd5e\/$1\"}}" 
+    # >> curlOutput.txt  
   # fi
 }
 
@@ -27,13 +27,13 @@ legal() {
 races() {
   ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/01_races/* | while read -r file; 
   do 
-    if [[ $file == *"0_Races.html"* ]]; then
+    # if [[ $file == *"0_Races.html"* ]]; then
       value=$(<"$file")
       file="$(echo $file | sed 's/^.\{85\}//')"
       file=${file::${#file}-5}
       echo $file
       convert_skullsplitter_md_to_html "$file" "$value"; 
-    fi
+    # fi
   done
 }
 
@@ -53,26 +53,26 @@ classes() {
 beyond() {
   ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/03_beyond1st/* | while read -r file; 
   do 
-    # if [[ $file == *"0_Beyond1stLevel.html"* ]]; then
-      value=$(<"$file")
-      file="$(echo $file | sed 's/^.\{89\}//')"
-      file=${file::${#file}-5}
-      echo $file
-      convert_skullsplitter_md_to_html "$file" "$value"; 
-    # fi
-  done
-}
-
-equipment() {
-  ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/04_equipment/* | while read -r file; 
-  do 
-    if [[ $file == *"3_Weapons.html"* ]]; then
+    if [[ $file == *"1_Multiclassing.html"* ]]; then
       value=$(<"$file")
       file="$(echo $file | sed 's/^.\{89\}//')"
       file=${file::${#file}-5}
       echo $file
       convert_skullsplitter_md_to_html "$file" "$value"; 
     fi
+  done
+}
+
+equipment() {
+  ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/04_equipment/* | while read -r file; 
+  do 
+    # if [[ $file == *"3_Weapons.html"* ]]; then
+      value=$(<"$file")
+      file="$(echo $file | sed 's/^.\{89\}//')"
+      file=${file::${#file}-5}
+      echo $file
+      convert_skullsplitter_md_to_html "$file" "$value"; 
+    # fi
   done
 }
 
@@ -241,8 +241,8 @@ npcs() {
 # legal 
 # races
 # classes
-# beyond
-equipment
+beyond
+# equipment
 # feats
 # mechanics
 # combat
