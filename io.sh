@@ -118,13 +118,13 @@ combat() {
 spellcasting() {
   ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/08_spellcasting/* | while read -r file; 
   do 
-    # if [[ $file == *"5_Spell Descriptions (A-F).html"* ]]; then
+    if [[ $file == *"4_Spell Descriptions.html"* ]]; then
       value=$(<"$file")
       file="$(echo $file | sed 's/^.\{92\}//')"
       file=${file::${#file}-5}
       echo $file
       convert_skullsplitter_md_to_html "$file" "$value"; 
-    # fi
+    fi
   done
 }
 
