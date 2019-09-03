@@ -244,9 +244,9 @@ npcs() {
 # beyond
 # equipment
 # feats
-mechanics
+# mechanics
 # combat
-# spellcasting
+spellcasting
 # running
 # magic_items
 # monsters
