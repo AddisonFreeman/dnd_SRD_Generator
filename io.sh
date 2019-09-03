@@ -157,13 +157,13 @@ magic_items() {
 monsters() {
   ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/11_monsters/* | while read -r file; 
   do 
-    if [[ $file == *"5_Monsters (D).html"* ]]; then
+    # if [[ $file == *"5_Monsters (D).html"* ]]; then
       value=$(<"$file")
       file="$(echo $file | sed 's/^.\{88\}//')"
       file=${file::${#file}-5}
       echo $file
       convert_skullsplitter_md_to_html "$file" "$value"; 
-    fi
+    # fi
   done
 }
 
@@ -248,8 +248,8 @@ npcs() {
 # combat
 # spellcasting
 # hazards
-magic_items
-# monsters
+# magic_items
+monsters
 # conditions
 # gods
 # planes
