@@ -92,7 +92,7 @@ feats() {
 mechanics() {
   ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/06_mechanics/* | while read -r file; 
   do 
-    # if [[ $file == *"1_Ability Scores.html"* ]]; then
+    # if [[ $file == *"2_Adventuring.html"* ]]; then
       value=$(<"$file")
       file="$(echo $file | sed 's/^.\{89\}//')"
       file=${file::${#file}-5}
@@ -243,9 +243,9 @@ npcs() {
 # classes
 # beyond
 # equipment
-feats
+# feats
 mechanics
-combat
+# combat
 # spellcasting
 # running
 # magic_items
