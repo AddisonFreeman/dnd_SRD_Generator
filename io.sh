@@ -238,15 +238,15 @@ npcs() {
   # echo "$value"
 # done
 
-# legal 
-# races
-# classes
-# beyond
-# equipment
-# feats
-# mechanics
-# combat
-spellcasting
+legal 
+races
+classes
+beyond
+equipment
+feats
+mechanics
+combat
+# spellcasting
 # running
 # magic_items
 # monsters
