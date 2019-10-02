@@ -245,36 +245,52 @@ main() {
   done
 }
 
+spells() {
+  ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/08_spellcasting/00_Spell\ Descriptions* | while read -r file; 
+  do 
+    # if [[ $file == *"00_Master Table Of Contents.html"* ]]; then
+      value=$(<"$file")
+      file="$(echo $file | sed 's/^.\{85\}//')"
+      file=${file::${#file}-5}
+      echo $file
+      # convert_skullsplitter_md_to_html "$file" "$value"; 
+    # fi
+  done
+}
+
+individual_monsters() {
+  ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/17_main/* | while read -r file; 
+  do 
+    # if [[ $file == *"00_Master Table Of Contents.html"* ]]; then
+      value=$(<"$file")
+      file="$(echo $file | sed 's/^.\{85\}//')"
+      file=${file::${#file}-5}
+      echo $file
+      convert_skullsplitter_md_to_html "$file" "$value"; 
+    # fi
+  done
+}
+
+# readfile
 # ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/11_monsters/* | while read -r file; 
 # do
   # value=$(<"$file")
   # echo "$value"
-
 # done
 
 
-# xml() {
 
 
-result=`xml sel -t -c "count(//h4)" out-unmodified/11_monsters/24_Monsters\ \(Z\).html`;
-i=0;
-while [ $i -lt $result ]; do
-    id=`xml sel -t -v "//h4[count(preceding-sibling::h4)=$i]" out-unmodified/11_monsters/24_Monsters\ \(Z\).html`;
-    echo $id;
-    xml sel -t -c "//h4[count(preceding-sibling::h4)=$i]" out-unmodified/11_monsters/24_Monsters\ \(Z\).html > out-unmodified/11_monsters/00_monsters/O0$i'_'$id.html
-    xml sel -t -c "//*[not(self::h4) and count(preceding-sibling::h4)=$i+1]" out-unmodified/11_monsters/24_Monsters\ \(Z\).html >> out-unmodified/11_monsters/00_monsters/O0$i'_'$id.html
-    # xml sel -t -c "//*[not(self::h4) and not(self::h3)][count(preceding-sibling::h4)=$i+1]]" out-unmodified/11_monsters/02_Monsters\ \(A\).html >> $i.txt
-    i=$(($i+1));
-done;
 
-# for idx in {0..$result};
-# do
-    # echo $idx;
-    # grep -A1 "<ID>$id</ID>" out-unmodified/11_monsters/02_Monsters\ \(A\).html | grep "<name>"
+# result=`xml sel -t -c "count(//h4)" out-unmodified/08_spellcasting/7_Spell\ Descriptions\ \(N-Z\).html`;
+# i=0;
+# while [ $i -lt $result ]; do
+#     id=`xml sel -t -v "//h4[count(preceding-sibling::h4)=$i]" out-unmodified/08_spellcasting/7_Spell\ Descriptions\ \(N-Z\).html`;
+#     echo $id;
+#     xml sel -t -c "//h4[count(preceding-sibling::h4)=$i]" out-unmodified/08_spellcasting/7_Spell\ Descriptions\ \(N-Z\).html > out-unmodified/08_spellcasting/00_Spell\ Descriptions/NZ0$i'_'$id.html
+#     xml sel -t -c "//*[not(self::h4) and count(preceding-sibling::h4)=$i+1]" out-unmodified/08_spellcasting/7_Spell\ Descriptions\ \(N-Z\).html >> out-unmodified/08_spellcasting/00_Spell\ Descriptions/NZ0$i'_'$id.html
+#     i=$(($i+1));
 # done;
-  # xml sel -t  -c "//*[count(preceding-sibling::h4)=1]" out-unmodified/11_monsters/02_Monsters\ \(A\).html
-# }
-
 
 
 # xml
@@ -296,4 +312,6 @@ done;
 # creatures
 # npcs
 # main
+spells
+# individual_monsters
 
