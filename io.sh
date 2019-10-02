@@ -256,13 +256,13 @@ main() {
 # xml() {
 
 
-result=`xml sel -t -c "count(//h5)" out-unmodified/11_monsters/00_monsters/523_Dragons,\ Metallic.html`;
+result=`xml sel -t -c "count(//h4)" out-unmodified/11_monsters/24_Monsters\ \(Z\).html`;
 i=0;
 while [ $i -lt $result ]; do
-    id=`xml sel -t -v "//h5[count(preceding-sibling::h5)=$i]" out-unmodified/11_monsters/00_monsters/523_Dragons,\ Metallic.html`;
+    id=`xml sel -t -v "//h4[count(preceding-sibling::h4)=$i]" out-unmodified/11_monsters/24_Monsters\ \(Z\).html`;
     echo $id;
-    xml sel -t -c "//h5[count(preceding-sibling::h5)=$i]" out-unmodified/11_monsters/00_monsters/523_Dragons,\ Metallic.html > out-unmodified/11_monsters/00_monsters/Dragons/53$i'_'$id.html
-    xml sel -t -c "//*[not(self::h5) and count(preceding-sibling::h5)=$i+1]" out-unmodified/11_monsters/00_monsters/523_Dragons,\ Metallic.html >> out-unmodified/11_monsters/00_monsters/Dragons/53$i'_'$id.html
+    xml sel -t -c "//h4[count(preceding-sibling::h4)=$i]" out-unmodified/11_monsters/24_Monsters\ \(Z\).html > out-unmodified/11_monsters/00_monsters/O0$i'_'$id.html
+    xml sel -t -c "//*[not(self::h4) and count(preceding-sibling::h4)=$i+1]" out-unmodified/11_monsters/24_Monsters\ \(Z\).html >> out-unmodified/11_monsters/00_monsters/O0$i'_'$id.html
     # xml sel -t -c "//*[not(self::h4) and not(self::h3)][count(preceding-sibling::h4)=$i+1]]" out-unmodified/11_monsters/02_Monsters\ \(A\).html >> $i.txt
     i=$(($i+1));
 done;
