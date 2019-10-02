@@ -6,8 +6,9 @@ convert_skullsplitter_md_to_html() {
     -H 'Content-Type: application/json' \
     -H 'Postman-Token: 99dc91b2-2f89-48be-b4b9-1c2ad5378315' \
     -H 'cache-control: no-cache' \
-    -d "{\"page\": {\"title\": \"$1\",\"body_html\": \"$2\",\"handle\":\"dnd5e\/$1\"}}" 
-    # >> curlOutput.txt  
+    -d "{\"page\": {\"title\": \"$1\",\"body_html\": \"$2\",\"template_suffix\": \"srd\",\"handle\":\"dnd5e\/$1\"}}" 
+    # >> curlOutput.txt
+    sleep 1  
   # fi
 }
 
@@ -246,15 +247,15 @@ main() {
 }
 
 spells() {
-  ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/08_spellcasting/00_Spell\ Descriptions* | while read -r file; 
+  ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/08_spellcasting/00_Spell\ Descriptions/* | while read -r file; 
   do 
-    # if [[ $file == *"00_Master Table Of Contents.html"* ]]; then
+    if [[ $file == *"AF128_Enlarge-Reduce.html"* ]]; then
       value=$(<"$file")
-      file="$(echo $file | sed 's/^.\{85\}//')"
-      file=${file::${#file}-5}
+      file="$(echo $file | sed 's/^.\{118\}//')"
+      file=${file::${#file}-5 }
       echo $file
-      # convert_skullsplitter_md_to_html "$file" "$value"; 
-    # fi
+      convert_skullsplitter_md_to_html "$file" "$value"; 
+    fi
   done
 }
 
@@ -262,11 +263,13 @@ individual_monsters() {
   ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/17_main/* | while read -r file; 
   do 
     # if [[ $file == *"00_Master Table Of Contents.html"* ]]; then
-      value=$(<"$file")
-      file="$(echo $file | sed 's/^.\{85\}//')"
-      file=${file::${#file}-5}
-      echo $file
-      convert_skullsplitter_md_to_html "$file" "$value"; 
+      echo $file;
+      # value=$(<"$file")
+      # echo $value;
+      # file="$(echo $file | sed 's/^.\{85\}//')"
+      # file=${file::${#file}-5}
+      # echo $file
+      # convert_skullsplitter_md_to_html "$file" "$value"; 
     # fi
   done
 }
