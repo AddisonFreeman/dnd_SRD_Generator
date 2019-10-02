@@ -245,12 +245,39 @@ main() {
   done
 }
 
-# ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/04_equipment/* | while read -r file; 
+# ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/11_monsters/* | while read -r file; 
 # do
   # value=$(<"$file")
   # echo "$value"
+
 # done
 
+
+# xml() {
+
+
+result=`xml sel -t -c "count(//h5)" out-unmodified/11_monsters/00_monsters/523_Dragons,\ Metallic.html`;
+i=0;
+while [ $i -lt $result ]; do
+    id=`xml sel -t -v "//h5[count(preceding-sibling::h5)=$i]" out-unmodified/11_monsters/00_monsters/523_Dragons,\ Metallic.html`;
+    echo $id;
+    xml sel -t -c "//h5[count(preceding-sibling::h5)=$i]" out-unmodified/11_monsters/00_monsters/523_Dragons,\ Metallic.html > out-unmodified/11_monsters/00_monsters/Dragons/53$i'_'$id.html
+    xml sel -t -c "//*[not(self::h5) and count(preceding-sibling::h5)=$i+1]" out-unmodified/11_monsters/00_monsters/523_Dragons,\ Metallic.html >> out-unmodified/11_monsters/00_monsters/Dragons/53$i'_'$id.html
+    # xml sel -t -c "//*[not(self::h4) and not(self::h3)][count(preceding-sibling::h4)=$i+1]]" out-unmodified/11_monsters/02_Monsters\ \(A\).html >> $i.txt
+    i=$(($i+1));
+done;
+
+# for idx in {0..$result};
+# do
+    # echo $idx;
+    # grep -A1 "<ID>$id</ID>" out-unmodified/11_monsters/02_Monsters\ \(A\).html | grep "<name>"
+# done;
+  # xml sel -t  -c "//*[count(preceding-sibling::h4)=1]" out-unmodified/11_monsters/02_Monsters\ \(A\).html
+# }
+
+
+
+# xml
 # legal 
 # races
 # classes
@@ -268,5 +295,5 @@ main() {
 # planes
 # creatures
 # npcs
-main
+# main
 
