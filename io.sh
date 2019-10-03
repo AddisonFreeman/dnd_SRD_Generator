@@ -6,8 +6,7 @@ convert_skullsplitter_md_to_html() {
     -H 'Content-Type: application/json' \
     -H 'Postman-Token: 99dc91b2-2f89-48be-b4b9-1c2ad5378315' \
     -H 'cache-control: no-cache' \
-    -d "{\"page\": {\"title\": \"$1\",\"body_html\": \"$2\",\"template_suffix\": \"srd\",\"handle\":\"dnd5e\/$1\"}}" 
-    # >> curlOutput.txt
+    -d "{\"page\": {\"title\": \"$1\",\"body_html\": \"$2\",\"template_suffix\": \"srd\",\"handle\":\"dnd5e\/$1\"}}" >> curlOutput.txt
     sleep 1  
   # fi
 }
@@ -249,27 +248,25 @@ main() {
 spells() {
   ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/08_spellcasting/00_Spell\ Descriptions/* | while read -r file; 
   do 
-    if [[ $file == *"AF128_Enlarge-Reduce.html"* ]]; then
+    # if [[ $file == *"AF128_Enlarge-Reduce.html"* ]]; then
       value=$(<"$file")
       file="$(echo $file | sed 's/^.\{118\}//')"
       file=${file::${#file}-5 }
       echo $file
       convert_skullsplitter_md_to_html "$file" "$value"; 
-    fi
+    # fi
   done
 }
 
-individual_monsters() {
-  ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/17_main/* | while read -r file; 
+individual_creatures() {
+  ls -f /Users/addisonfreeman/Development/skullsplitter/dnd-5e-srd/out-unmodified/15_creatures/00_Creatures/* | while read -r file; 
   do 
-    # if [[ $file == *"00_Master Table Of Contents.html"* ]]; then
-      echo $file;
-      # value=$(<"$file")
-      # echo $value;
-      # file="$(echo $file | sed 's/^.\{85\}//')"
-      # file=${file::${#file}-5}
-      # echo $file
-      # convert_skullsplitter_md_to_html "$file" "$value"; 
+    # if [[ $file == *"00_Ape.html"* ]]; then
+      value=$(<"$file")
+      file="$(echo $file | sed 's/^.\{104\}//')"
+      file=${file::${#file}-5 }
+      echo $file
+      convert_skullsplitter_md_to_html "$file" "$value"; 
     # fi
   done
 }
@@ -285,13 +282,13 @@ individual_monsters() {
 
 
 
-# result=`xml sel -t -c "count(//h4)" out-unmodified/08_spellcasting/7_Spell\ Descriptions\ \(N-Z\).html`;
+# result=`xml sel -t -c "count(//h4)" out-unmodified/15_creatures/0_Creatures.html`;
 # i=0;
 # while [ $i -lt $result ]; do
-#     id=`xml sel -t -v "//h4[count(preceding-sibling::h4)=$i]" out-unmodified/08_spellcasting/7_Spell\ Descriptions\ \(N-Z\).html`;
+#     id=`xml sel -t -v "//h4[count(preceding-sibling::h4)=$i]" out-unmodified/15_creatures/0_Creatures.html`;
 #     echo $id;
-#     xml sel -t -c "//h4[count(preceding-sibling::h4)=$i]" out-unmodified/08_spellcasting/7_Spell\ Descriptions\ \(N-Z\).html > out-unmodified/08_spellcasting/00_Spell\ Descriptions/NZ0$i'_'$id.html
-#     xml sel -t -c "//*[not(self::h4) and count(preceding-sibling::h4)=$i+1]" out-unmodified/08_spellcasting/7_Spell\ Descriptions\ \(N-Z\).html >> out-unmodified/08_spellcasting/00_Spell\ Descriptions/NZ0$i'_'$id.html
+#     xml sel -t -c "//h4[count(preceding-sibling::h4)=$i]" out-unmodified/15_creatures/0_Creatures.html > out-unmodified/15_creatures/00_Creatures/0$i'_'$id.html
+#     xml sel -t -c "//*[not(self::h4) and count(preceding-sibling::h4)=$i+1]" out-unmodified/15_creatures/0_Creatures.html >> out-unmodified/15_creatures/00_Creatures/0$i'_'$id.html
 #     i=$(($i+1));
 # done;
 
@@ -315,6 +312,6 @@ individual_monsters() {
 # creatures
 # npcs
 # main
-spells
-# individual_monsters
+# spells
+individual_creatures
 
